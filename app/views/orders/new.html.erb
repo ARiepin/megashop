@@ -1,0 +1,30 @@
+<h1>Заказ</h1>
+<%= form_for(@order) do |f| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+        <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+    	<%= f.label :email %>
+    	<%= f.email_field :email %>
+    </div>
+    <div>
+    	<%= f.label :address %>
+    	<%= f.text_field :address %>
+    </div>
+    <div>
+        <%= f.label :telephone %>
+        <%= f.telephone_field :telephone %>
+    </div>
+
+    <div class="actions">
+    	<%= f.submit 'Заказать' %>
+    </div>
+<% end %>

@@ -1,12 +1,11 @@
-<h1>Корзина</h1>
+<h1>Заказ оформлен! Ожидайте, с вами свяжется наш консультант.</h1>
 <table class="cart_table">
-<% current_cart.line_items.each_with_index do |line_item, i| %>
+<% @order.line_items.each_with_index do |line_item, i| %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= line_item.product.name %></td>
         <td><%= line_item.quantity %></td>
         <td><%= line_item.price*line_item.quantity %></td>
-        <td><%= link_to 'удалить', line_item_path(line_item), method: :delete %></td>
       </tr>
 <% end %>
   <tr>
@@ -14,5 +13,3 @@
     <td colspan="2"><%= @total_price %> грн.</td>
   </tr>
 </table>
-
-<%= link_to 'Заказать', new_order_path, class: 'add_to_cart' %>
