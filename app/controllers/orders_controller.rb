@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.create(order_params)
 		current_cart.line_items.each {|item| item.update(order_id: @order.id) & item.save}
+		OrderMailer.order_mail(@order).deliver
 		redirect_to order_url(@order)
 	end
 
